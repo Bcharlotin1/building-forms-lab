@@ -1,12 +1,15 @@
 // Add BandInput component
 import React, { Component } from 'react'
 
+
 class BandInput extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
+  
     this.state = {
       name:''
     }
+    // this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange = (event) => {
@@ -17,23 +20,29 @@ class BandInput extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.addband(this.state.name);
+    this.props.addBand(this.state);
+    this.setState({
+      name: '',
+    })
   };
 
   render() {
     return(
       <div>
-        <form>
+        <form  onSubmit={(event)=>this.handleSubmit(event)}>
           <input 
           type="text"
           onChange={this.handleChange}
           value={this.state.name}>
           </input>
-          <input type="submit" onSubmit={this.handleSubmit}> Submit</input>
+
+          <input type="submit"></input>
         </form>
       </div>
     )
   }
 }
 
-export default BandInput
+
+
+export default BandInput;
